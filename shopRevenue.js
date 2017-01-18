@@ -8,11 +8,10 @@
  *           *cough* So I spent time that I never had, to make a program to get
  *           me the money. I NEED THE JOB PLS!!
  */
-
+require ('console.table');
 var request = require('request'),
     url = 'https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6',
     total_rev = 0
-
 function main() {
   request(url, function(err, res, body) {
     if(!err && res.statusCode == 200) {
@@ -23,7 +22,6 @@ function main() {
        * Loop through each order, and get the total_price as seen from
        * https://help.shopify.com/api/reference/order#total-price-property
        */
-
       products.orders.forEach(function(product) {
         /**
          * NOTE YOU CAN NOT USE parseInt !! 
@@ -35,8 +33,12 @@ function main() {
          */
         total_rev += parseFloat(product.total_price); 
 
+
         /* Uncomment for debugging reasons or because you are a total rebel */
-        //console.log("Order ID = " +product.id + "  = $" + product.total_price);
+        //console.log("Order ID = " +product.id + "  ");
+        product.line_items.forEach(function(item) {
+          console.log("Order ID = " + product.id + "\t Items : " + item.name + " \t\t\tSub Rev = " + parseFloat(product.total_price))
+        })
       })
 
       weDoneHere()
