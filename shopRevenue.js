@@ -37,7 +37,7 @@ function main() {
         /* Uncomment for debugging reasons or because you are a total rebel */
         //console.log("Order ID = " +product.id + "  ");
         product.line_items.forEach(function(item) {
-          console.log("Order ID = " + product.id + "\t Items : " + item.name + " \t\t\tSub Rev = " + parseFloat(product.total_price))
+          console.log("Order ID = " + product.id + "\t Items : " + item.name + " \tSub Rev = " + parseFloat(product.total_price))
         })
       })
 
